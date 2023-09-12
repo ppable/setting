@@ -25,6 +25,7 @@ public class SettingActivity extends AppCompatActivity {
 
         textView = findViewById(R.id.volume);
         SeekBar seekBar = findViewById(R.id.seekBar);
+        maudioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
 
         button_red = findViewById(R.id.button_red);
         button_blue = findViewById(R.id.button_blue);
