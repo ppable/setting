@@ -1,6 +1,8 @@
 package com.example.setting;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.constraintlayout.widget.ConstraintSet;
 
 import android.graphics.Color;
 import android.media.AudioManager;
@@ -14,8 +16,8 @@ import android.widget.Button;
 public class SettingActivity extends AppCompatActivity {
     TextView textView;
     Button button_red, button_blue, button_green;
-    LinearLayout layout;
-    AudioManager audioManager=null;
+    ConstraintLayout layout;
+    AudioManager maudioManager=null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,9 +39,9 @@ public class SettingActivity extends AppCompatActivity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress , boolean fromUser) {
                 int i = seekBar.getProgress();
-                int maxvol = audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
+                int maxvol = maudioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
                 int volume = (int) maxvol*(i/100);
-                audioManager.setStreamVolume(AudioManager.STREAM_MUSIC,volume,AudioManager.FLAG_SHOW_UI);
+                maudioManager.setStreamVolume(AudioManager.STREAM_MUSIC,volume,AudioManager.FLAG_SHOW_UI);
                 textView.setText(""+progress+"%");
             }
             @Override
@@ -49,18 +51,18 @@ public class SettingActivity extends AppCompatActivity {
             public void onStopTrackingTouch(SeekBar seekBar) {
             }
         });
-        View.OnClickListener ColorClick = new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int id = view.getId();
-                if (id == R.id.button_red) {
-                    layout.setBackgroundColor(Color.rgb(255, 199, 234));
-                } else if (id == R.id.button_blue) {
-                    layout.setBackgroundColor(Color.rgb(130, 160, 216));
-                } else if (id == R.id.button_green) {
-                    layout.setBackgroundColor(Color.rgb(166, 255, 150));
-                }
-            }
-        };
     }
+    View.OnClickListener ColorClick = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            int id = view.getId();
+            if (id == R.id.button_red) {
+                layout.setBackgroundColor(Color.rgb(255, 199, 234));
+            } else if (id == R.id.button_blue) {
+                layout.setBackgroundColor(Color.rgb(130, 160, 216));
+            } else if (id == R.id.button_green) {
+                layout.setBackgroundColor(Color.rgb(166, 255, 150));
+            }
+        }
+    };
 }
