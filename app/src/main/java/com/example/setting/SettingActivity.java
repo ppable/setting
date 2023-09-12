@@ -39,9 +39,8 @@ public class SettingActivity extends AppCompatActivity {
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress , boolean fromUser) {
-                int i = seekBar.getProgress();
                 int maxvol = maudioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
-                int volume = (int) maxvol*(i/100);
+                int volume = maxvol*progress/100;
                 maudioManager.setStreamVolume(AudioManager.STREAM_MUSIC,volume,AudioManager.FLAG_SHOW_UI);
                 textView.setText(""+progress+"%");
             }
